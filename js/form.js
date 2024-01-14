@@ -28,7 +28,9 @@ else{
     var passenger = document.getElementById("passenger").value;
  
 
-
+    
+    
+    
     var my_text = ` Réservation le: ${date}
                     %0A               
                     %0A Adresse départ: ${Depart} 
@@ -45,7 +47,7 @@ else{
                     var chat_id =-4057359205;
                     var url= `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${my_text}`;
                    
-   
+                    gtag('event', 'conversion', {'send_to': 'AW-11274013815/Z12XCIG30YgZEPeY7_8p'});      
    let api = new XMLHttpRequest();
     api.open("GET",url,true);
     api.send();
