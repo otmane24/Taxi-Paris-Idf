@@ -12,7 +12,7 @@ function generateRandomCode() {
 
   return code;
 }
-// var option = ["+1", "+7", "+54", "+61", "+49", "+33", "+44", "+81", "+82"];
+var option = ["+1", "+7", "+54", "+61", "+49", "+33", "+44", "+81", "+82"];
 // Get the dropdown container
 var dropdown = document.querySelector('.dropdown');
 
@@ -34,9 +34,47 @@ selected.addEventListener('click', function() {
 optionElements.forEach(function(option) {
   option.addEventListener('click', function() {
     selected.textContent = this.textContent;
+    
     options.style.display = 'none';
   });
 });
+// Get the input field
+var input = document.getElementById('Depart');
+
+// Get the button
+var button = document.getElementById('startGeolocation');
+
+// Function to start geolocation
+function startGeolocation() {
+  // Check if the Geolocation API is supported
+  if (navigator.geolocation) {
+    // Get the current position
+    navigator.geolocation.getCurrentPosition(function(position) {
+      // Use OpenStreetMap's Nominatim API to get the address
+      var lat = position.coords.latitude;
+      var lon = position.coords.longitude;
+      var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          // Update the input field with the current address
+          input.value = data.display_name;
+        })
+        .catch(error => console.error('Error:', error));
+    }, function(error) {
+      // Handle error
+      console.error('Error obtaining geolocation', error);
+    });
+  } else {
+    // Handle case where Geolocation API is not supported
+    console.error('Geolocation API not supported');
+  }
+}
+
+// Add event listener to the button
+button.addEventListener('click', startGeolocation);
+
 const form = document.getElementById("Reservation-Formulaire");
 
 form.addEventListener("submit", (e) => {
@@ -77,7 +115,7 @@ form.addEventListener("submit", (e) => {
                         %0A   
                         %0A Adresse de arivée: ${Destination} 
                         %0A      
-                        %0A Numéro du client: ${phone}
+                        %0A Numéro du client: + ${selected.textContent} ${phone}
                         %0A         
                         %0A Nombre de passager: ${passenger}
                        

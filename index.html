@@ -30,8 +30,8 @@
 
       gtag("config", "AW-11274013815");
     </script>
-       <!-- Google tag (gtag.js) -->
-       
+    <!-- Google tag (gtag.js) -->
+
     <meta charset="UTF-8" />
     <meta name="description" content="Sona Template" />
     <meta name="keywords" content="Sona, unica, creative, html" />
@@ -39,7 +39,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Taxi Paris Idf</title>
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
     <!-- Google Font -->
     <link
       href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap"
@@ -261,7 +264,15 @@
               <form id="Reservation-Formulaire" action="/" class="formss">
                 <div class="check-date">
                   <label for="date-in">Adresse de départ:</label>
-                  <input type="text" class="input" id="Depart" required />
+                  <div style="align-items: center; position: relative;">
+                    <button
+                      id="startGeolocation"
+                      style="margin-right: 10px; "
+                    > Votre position
+                      <i class="fas fa-map-marker-alt"></i>
+                    </button>
+                    <div><input type="text" class="input" id="Depart" /></div>
+                  </div>
                   <i class="fa fa-map-marker" aria-hidden="true"></i>
                 </div>
                 <div class="check-date">
@@ -273,14 +284,15 @@
                 <div class="check-date">
                   <div class="dropdown">
                     <div class="dropdown-selected">Select an option</div>
-                    <div class="dropdown-options" style="max-height: 100px; overflow-y: auto;">
+                    <div
+                      class="dropdown-options"
+                      style="max-height: 100px; overflow-y: auto;"
+                    >
                       <div class="dropdown-option">+213</div>
                       <div class="dropdown-option">+33</div>
                       <div class="dropdown-option">+34</div>
-             
-                  
                     </div>
-                </div>
+                  </div>
                   <label for="">Numéro de téléphone:</label>
                   <input
                     type="text"
