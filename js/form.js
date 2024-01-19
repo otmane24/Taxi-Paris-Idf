@@ -12,7 +12,31 @@ function generateRandomCode() {
 
   return code;
 }
+// var option = ["+1", "+7", "+54", "+61", "+49", "+33", "+44", "+81", "+82"];
+// Get the dropdown container
+var dropdown = document.querySelector('.dropdown');
 
+// Get the selected option display
+var selected = dropdown.querySelector('.dropdown-selected');
+
+// Get the options container
+var options = dropdown.querySelector('.dropdown-options');
+
+// Get the option elements
+var optionElements = options.querySelectorAll('.dropdown-option');
+
+// Show/hide options when the selected option display is clicked
+selected.addEventListener('click', function() {
+  options.style.display = options.style.display === 'none' ? 'block' : 'none';
+});
+
+// Update the selected option display when an option is clicked
+optionElements.forEach(function(option) {
+  option.addEventListener('click', function() {
+    selected.textContent = this.textContent;
+    options.style.display = 'none';
+  });
+});
 const form = document.getElementById("Reservation-Formulaire");
 
 form.addEventListener("submit", (e) => {
