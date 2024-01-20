@@ -115,7 +115,7 @@ form.addEventListener("submit", (e) => {
                         %0A   
                         %0A Adresse de arivée: ${Destination} 
                         %0A      
-                        %0A Numéro du client: + ${selected.textContent} ${phone}
+                        %0A Numéro du client: +${selected.textContent} ${phone}
                         %0A         
                         %0A Nombre de passager: ${passenger}
                        
