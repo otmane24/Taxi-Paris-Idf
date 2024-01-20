@@ -850,7 +850,7 @@ pre code {
 .col-7 {
     -ms-flex: 0 0 60%;
     flex: 0 0 inherit;
-    /* max-width: 58.333333% */
+    
 }
 
 .col-8 {
