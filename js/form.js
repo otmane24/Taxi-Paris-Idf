@@ -1,5 +1,5 @@
 function generateRandomCode() {
-  const randomLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
   const randomNumbers = "0123456789";
 
   let code = "";
