@@ -1,5 +1,5 @@
 function generateRandomCode() {
-
+  const randomLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
   const randomNumbers = "0123456789";
 
   let code = "";
@@ -12,68 +12,71 @@ function generateRandomCode() {
 
   return code;
 }
-var option = ["+1", "+7", "+54", "+61", "+49", "+33", "+44", "+81", "+82"];
+
 // Get the dropdown container
-var dropdown = document.querySelector('.dropdown');
+var dropdown = document.querySelector(".dropdown");
 
 // Get the selected option display
-var selected = dropdown.querySelector('.dropdown-selected');
+var selected = dropdown.querySelector(".dropdown-selected");
 
 // Get the options container
-var options = dropdown.querySelector('.dropdown-options');
+var options = dropdown.querySelector(".dropdown-options");
 
 // Get the option elements
-var optionElements = options.querySelectorAll('.dropdown-option');
+var optionElements = options.querySelectorAll(".dropdown-option");
 
 // Show/hide options when the selected option display is clicked
-selected.addEventListener('click', function() {
-  options.style.display = options.style.display === 'none' ? 'block' : 'none';
+selected.addEventListener("click", function () {
+  options.style.display = options.style.display === "none" ? "block" : "none";
 });
 
 // Update the selected option display when an option is clicked
-optionElements.forEach(function(option) {
-  option.addEventListener('click', function() {
+optionElements.forEach(function (option) {
+  option.addEventListener("click", function () {
     selected.textContent = this.textContent;
-    
-    options.style.display = 'none';
+
+    options.style.display = "none";
   });
 });
 // Get the input field
-var input = document.getElementById('Depart');
+var input = document.getElementById("Depart");
 
 // Get the button
-var button = document.getElementById('startGeolocation');
+var button = document.getElementById("startGeolocation");
 
 // Function to start geolocation
 function startGeolocation() {
   // Check if the Geolocation API is supported
   if (navigator.geolocation) {
     // Get the current position
-    navigator.geolocation.getCurrentPosition(function(position) {
-      // Use OpenStreetMap's Nominatim API to get the address
-      var lat = position.coords.latitude;
-      var lon = position.coords.longitude;
-      var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        // Use OpenStreetMap's Nominatim API to get the address
+        var lat = position.coords.latitude;
+        var lon = position.coords.longitude;
+        var url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
 
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          // Update the input field with the current address
-          input.value = data.display_name;
-        })
-        .catch(error => console.error('Error:', error));
-    }, function(error) {
-      // Handle error
-      console.error('Error obtaining geolocation', error);
-    });
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            // Update the input field with the current address
+            input.value = data.display_name;
+          })
+          .catch((error) => console.error("Error:", error));
+      },
+      function (error) {
+        // Handle error
+        console.error("Error obtaining geolocation", error);
+      }
+    );
   } else {
     // Handle case where Geolocation API is not supported
-    console.error('Geolocation API not supported');
+    console.error("Geolocation API not supported");
   }
 }
 
 // Add event listener to the button
-button.addEventListener('click', startGeolocation);
+button.addEventListener("click", startGeolocation);
 
 const form = document.getElementById("Reservation-Formulaire");
 
