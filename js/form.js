@@ -12,6 +12,7 @@ function generateRandomCode() {
 
   return code;
 }
+
 function getPhoneFormat(countryCode) {
   switch (countryCode) {
     case "(US)":
@@ -71,6 +72,7 @@ document.getElementById("phone").addEventListener("input", function (e) {
 //     (x[4] ? " " + x[4] : "") +
 //     (x[5] ? " " + x[5] : "");
 // });
+
 
 // Get the dropdown container
 var dropdown = document.querySelector(".dropdown");
