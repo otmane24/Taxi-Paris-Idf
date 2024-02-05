@@ -12,6 +12,65 @@ function generateRandomCode() {
 
   return code;
 }
+function getPhoneFormat(countryCode) {
+  switch (countryCode) {
+    case "(US)":
+      return { regex: /(\d{0,3})(\d{0,3})(\d{0,4})/, format: "$1-$2-$3" };
+    case "(FR)":
+      return {
+        regex: /(\d{0,1})(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})/,
+        format: "$1 $2 $3 $4 $5",
+      };
+    case "(GB)":
+      return {
+        regex: /(\d{0,2})(\d{0,4})(\d{0,4})/,
+        format: "$1 $2 $3",
+      };
+    // Add more countries as needed
+    default:
+      return { regex: /(\d+)/, format: "$1" };
+  }
+}
+
+document.getElementById("phone").addEventListener("input", function (e) {
+  // Get the selected country code
+  var countryCode = document
+    .querySelector(".dropdown-selected")
+    .textContent.split(" ")[1];
+
+  // Get the regular expression and the format based on the country code
+  var { regex, format } = getPhoneFormat(countryCode);
+
+  var x = e.target.value.replace(/\D/g, "").match(regex);
+
+  if (x[1] === "0") {
+    x[1] = "";
+    document.getElementById("phoneError").textContent =
+      "Le premier chiffre ne doit pas être zéro '0'.";
+  } else {
+    document.getElementById("phoneError").textContent = "";
+  }
+  e.target.value = x.slice(1).join(" ").trim();
+});
+// document.getElementById("phone").addEventListener("input", function (e) {
+//   var x = e.target.value
+//     .replace(/\D/g, "")
+//     .match(/(\d{0,1})(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})/);
+
+// if (x[1] === "0") {
+//   x[1] = "";
+//   document.getElementById("phoneError").textContent =
+//     "Le premier chiffre ne doit pas être zéro '0'.";
+// } else {
+//   document.getElementById("phoneError").textContent = "";
+// }
+//   e.target.value =
+//     x[1] +
+//     (x[2] ? " " + x[2] : "") +
+//     (x[3] ? " " + x[3] : "") +
+//     (x[4] ? " " + x[4] : "") +
+//     (x[5] ? " " + x[5] : "");
+// });
 
 // Get the dropdown container
 var dropdown = document.querySelector(".dropdown");
@@ -107,7 +166,10 @@ form.addEventListener("submit", (e) => {
     var date = document.getElementById("date").value;
     var passenger = document.getElementById("passenger").value;
     var code_course = generateRandomCode();
-
+    var plus = "%2B";
+    var str =
+      "Numéro du clients: " + plus + selected.textContent.split(" ")[0] + phone;
+    console.log(str);
     var my_text = `     Taxi Paris Idf
                         %0A
                         %0ACode course: ${code_course}
@@ -118,7 +180,7 @@ form.addEventListener("submit", (e) => {
                         %0A   
                         %0A Adresse de arivée: ${Destination} 
                         %0A      
-                        %0A Numéro du client: +${selected.textContent} ${phone}
+                        %0A ${str}
                         %0A         
                         %0A Nombre de passager: ${passenger}
                        
