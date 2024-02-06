@@ -21,6 +21,7 @@ function getPhoneFormat(countryCode) {
       return {
         regex: /(\d{0,1})(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})/,
         format: "$1 $2 $3 $4 $5",
+        
       };
     case "(GB)":
       return {
@@ -53,25 +54,6 @@ document.getElementById("phone").addEventListener("input", function (e) {
   }
   e.target.value = x.slice(1).join(" ").trim();
 });
-// document.getElementById("phone").addEventListener("input", function (e) {
-//   var x = e.target.value
-//     .replace(/\D/g, "")
-//     .match(/(\d{0,1})(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})/);
-
-// if (x[1] === "0") {
-//   x[1] = "";
-//   document.getElementById("phoneError").textContent =
-//     "Le premier chiffre ne doit pas être zéro '0'.";
-// } else {
-//   document.getElementById("phoneError").textContent = "";
-// }
-//   e.target.value =
-//     x[1] +
-//     (x[2] ? " " + x[2] : "") +
-//     (x[3] ? " " + x[3] : "") +
-//     (x[4] ? " " + x[4] : "") +
-//     (x[5] ? " " + x[5] : "");
-// });
 
 
 // Get the dropdown container
